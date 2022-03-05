@@ -44,9 +44,14 @@ public class AppController {
         Article doomsday = new Article("Pam Jackson", "Bitcoin doomsday: Why it will fall to 0.");
         Article invest = new Article("Wojak Trapper", "What you should invest all your money in RIGHT NOW!!");
         Article chalamet = new Article("Kitty Kat", "Why is Timothée Chalamet so hot???");
+        Article dogs = new Article ("Heute", "Wir suchen die beliebten Hunderassen");
+        Article kaliumJod = new Article ("Kleine Zeitung", "Wann man KaliumJod einnehmen sollte");
+        Article minister = new Article ("ATV", "Johannes Rauch: Neuer Gesundheitsminister");
+        Article boerse = new Article ("Der Standard", " Börsen im freien Fall");
+        Article hanf = new Article ("Schaufenster", "Ist Hanf das Bessere Holz?");
 
 
-        List<Article> liste = Arrays.asList(bitcoinRave, deadCat, floridaMan, transformers, encanto, cyborgs, running, doomsday, invest, chalamet);
+        List<Article> liste = Arrays.asList(bitcoinRave, deadCat, floridaMan, transformers, encanto, cyborgs, running, doomsday, invest, chalamet, dogs, kaliumJod, minister, boerse, hanf);
         return liste;
     }
 }
