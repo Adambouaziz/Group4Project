@@ -1,5 +1,8 @@
 package at.ac.fhcampuswien;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AppController {
@@ -9,7 +12,7 @@ public class AppController {
     public List<Article> allNewsBitcoin;
 
     public AppController(){
-
+        generateMockList();
     }
 
     public void setArticles(List<Article> articles) {
@@ -30,5 +33,14 @@ public class AppController {
 
     //protected static List<Article> filterList(String query, List<Article> articles){}
 
-    //private static List<Article> generateMockList(){}
+    private static List<Article> generateMockList(){
+        Article bitcoinRave = new Article("Steve Smith", "The Bitcoins are raving");
+        Article deadCat = new Article("Liliane Haider", "My poor cat, omg...");
+        Article floridaMan = new Article("Franz Jospeh", "Florida man burned down house with spaghetti sauce");
+        Article transformers = new Article("Shia Lebouf", "Cars are able to speak now...?");
+        Article encanto = new Article("Mirabel Madrigal", "I blew out my family's special candle");
+
+        List<Article> liste = Arrays.asList(bitcoinRave, deadCat, floridaMan, transformers, encanto);
+        return liste;
+    }
 }
