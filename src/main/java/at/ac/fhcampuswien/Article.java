@@ -5,8 +5,8 @@ public class Article {
     private String title;
 
     public Article(String author, String title){
-
-
+        getAuthor();
+        getTitle();
     }
 
     public String getAuthor(){
