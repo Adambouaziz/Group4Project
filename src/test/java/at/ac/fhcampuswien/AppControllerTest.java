@@ -62,6 +62,20 @@ public class AppControllerTest {
         assertEquals(test, result);
     }
 
+    @Test
+    @DisplayName("should implement filterList and therefore do the same")
+    public void testAllNewsBitcoin(){
+        AppController tro = new AppController();
+        tro.setArticles(mock);
+
+        String test = String.valueOf(tro.getAllNewsBitcoin());
+        String result = String.valueOf(tro.filterList("Bitcoin", mock));
+
+        assertNotNull(test);
+        assertEquals(test, result);
+
+    }
+
 
 
 
