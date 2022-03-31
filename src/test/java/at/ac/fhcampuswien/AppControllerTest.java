@@ -76,7 +76,16 @@ public class AppControllerTest {
 
     }
 
+    @Test
+    @DisplayName("test to see if Article count is right number")
+    public void testGetArticleCount(){
+        AppController app = new AppController();
+        int test = 0;
 
+        test = app.getArticleCount();
+        assertNotNull(test);
+        assertEquals(15, test);
+    }
 
 
 }
