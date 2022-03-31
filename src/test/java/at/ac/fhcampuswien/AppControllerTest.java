@@ -87,5 +87,14 @@ public class AppControllerTest {
         assertEquals(15, test);
     }
 
+    @Test
+    @DisplayName("should contain Articles")
+    public void testSetArticle(){
+        AppController app = new AppController();
+        app.setArticles(mock);
+        assertNotNull(mock);
+        assertEquals(mock ,mock);
+    }
+
 
 }
