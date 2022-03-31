@@ -7,11 +7,13 @@ import java.util.List;
 
 public class AppController {
     private List<Article> articles;
-    public int count;
-    public List<Article> topHeadlinesAustria;
-    public List<Article> allNewsBitcoin;
+    static List<Article> liste;
+    public int count = generateMockList().size();
+
+    public static List<Article> allNewsBitcoin = new ArrayList<Article>();
 
     public AppController(){
+        liste = articles;
         generateMockList();
     }
 
@@ -24,14 +26,16 @@ public class AppController {
     }
 
     public List<Article> getTopHeadlinesAustria(){
-        return topHeadlinesAustria;
+
     }
 
     public List<Article> getAllNewsBitcoin(){
         return allNewsBitcoin;
     }
 
-    //protected static List<Article> filterList(String query, List<Article> articles){}
+    protected static List<Article> filterList(String query, List<Article> articles){
+
+    }
 
     private static List<Article> generateMockList(){
         Article bitcoinRave = new Article("Steve Smith", "The Bitcoins are raving");

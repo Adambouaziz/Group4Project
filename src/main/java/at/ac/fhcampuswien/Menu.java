@@ -6,12 +6,18 @@ public class Menu {
 
     AppController controller = new AppController();
 
-    private static final String INVALID_INPUT_MESSAGE = null;
-    private static final String EXIT_MESSAGE = null;
+    private static final String INVALID_INPUT_MESSAGE = "No<3";
+    private static final String EXIT_MESSAGE = "See ya later Alligator!";
+    String scan;
 
     public void start(){
-        printMenu();
-        handleInput("");
+        for (int i = 1; i > 0; i++){
+            printMenu();
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Choose your fighter: ");
+            scan = scanner.next();
+            handleInput(scan);
+        }
 
     }
 

@@ -5,6 +5,8 @@ public class Article {
     private String title;
 
     public Article(String author, String title){
+        setAuthor(author);
+        setTitle(title);
         getAuthor();
         getTitle();
     }
@@ -15,6 +17,14 @@ public class Article {
 
     public String getTitle(){
         return title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
