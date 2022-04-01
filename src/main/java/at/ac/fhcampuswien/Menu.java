@@ -26,7 +26,10 @@ public class Menu {
         scan = input;
         if (Objects.equals(input, "a")){
 
-        }else if (Objects.equals(input, "b")){
+        }else if (Objects.equals(input, "b")) {
+            getAllNewsBitcoin(controller);
+
+
 
         }else if (Objects.equals(input, "y")){
 
@@ -43,6 +46,7 @@ public class Menu {
     private void getTopHeadlinesAustria(AppController ctrl){}
 
     private void getAllNewsBitcoin(AppController ctrl){
+        System.out.println(ctrl.getAllNewsBitcoin());
     }
 
     private static void printExitMessage(){System.out.println(EXIT_MESSAGE);}
