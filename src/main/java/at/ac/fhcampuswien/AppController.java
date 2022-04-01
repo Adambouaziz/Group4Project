@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class AppController {
     private List<Article> articles;
@@ -25,16 +27,24 @@ public class AppController {
         return count;
     }
 
-    public List<Article> getTopHeadlinesAustria(){
+    /*public List<Article> getTopHeadlinesAustria(){
 
-    }
+    }*/
 
     public List<Article> getAllNewsBitcoin(){
         return allNewsBitcoin;
     }
 
     protected static List<Article> filterList(String query, List<Article> articles){
+        articles = liste;
 
+        Predicate<Article> bitcoin = article -> article.getTitle().toLowerCase().contains(query.toLowerCase());
+
+        allNewsBitcoin = articles.stream().filter(bitcoin)
+                .collect(Collectors.toList());
+
+
+        return allNewsBitcoin;
     }
 
     private static List<Article> generateMockList(){

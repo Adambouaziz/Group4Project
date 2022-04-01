@@ -32,9 +32,10 @@ public class Menu {
         }else if (input == "y"){
 
         }else if (input == "q"){
-
+            printExitMessage();
+            System.exit(0);
         }else{
-            System.out.println(INVALID_INPUT_MESSAGE);
+            printInvalidInputMessage();
         }
     }
 
@@ -42,11 +43,12 @@ public class Menu {
 
     private void getTopHeadlinesAustria(AppController ctrl){}
 
-    private void getAllNewsBitcoin(AppController ctrl){}
+    private void getAllNewsBitcoin(AppController ctrl){
+    }
 
-    private static void printExitMessage(){}
+    private static void printExitMessage(){System.out.println(EXIT_MESSAGE);}
 
-    private static void printInvalidInputMessage(){}
+    private static void printInvalidInputMessage(){System.out.println(INVALID_INPUT_MESSAGE);}
 
     private static void printMenu(){
 
