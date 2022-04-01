@@ -57,14 +57,14 @@ public class Menu {
         }
 
         System.out.println();
-        System.out.println("*   Welcome to Newsapp    *");
+        System.out.println("*   Welcome to NewsApp    *");
 
         for (int i = 0; i < 30; i++){
             System.out.print("*");
         }
 
         System.out.println();
-        System.out.println("Enter what you want to do:");
+        System.out.println("Enter what you wanna do:");
         System.out.println("a: Get top headlines Austria");
         System.out.println("b: Get all news about about bitcoin");
         System.out.println("y: Count articles");
