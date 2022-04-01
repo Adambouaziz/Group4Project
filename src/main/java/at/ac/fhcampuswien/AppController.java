@@ -33,10 +33,9 @@ public class AppController {
     public int getArticleCount(){
         return count;
     }
-
-    /*public List<Article> getTopHeadlinesAustria(){
-        return;
-    }*/
+    public List<Article> getTopHeadlinesAustria(){
+            return generateMockList();
+    }
 
     public List<Article> getAllNewsBitcoin(){
         return filterList("bitcoin", articles);

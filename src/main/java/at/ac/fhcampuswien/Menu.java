@@ -26,9 +26,13 @@ public class Menu {
         scan = input;
         if (Objects.equals(input, "a")){
 
+            getTopHeadlinesAustria(controller);
+
         }else if (Objects.equals(input, "b")) {
             getAllNewsBitcoin(controller);
         }else if (Objects.equals(input, "y")){
+
+            getArticleCount(controller);
 
         }else if (Objects.equals(input, "q")){
             printExitMessage();
@@ -38,9 +42,15 @@ public class Menu {
         }
     }
 
-    private void getArticleCount(AppController ctrl){}
+    private void getArticleCount(AppController ctrl){
 
-    private void getTopHeadlinesAustria(AppController ctrl){}
+        System.out.println("Article Count seems to be: "+ctrl.getArticleCount());
+    }
+
+    private void getTopHeadlinesAustria(AppController ctrl){
+
+        System.out.println(ctrl.getTopHeadlinesAustria());
+    }
 
     private void getAllNewsBitcoin(AppController ctrl){
         System.out.println(ctrl.getAllNewsBitcoin());
