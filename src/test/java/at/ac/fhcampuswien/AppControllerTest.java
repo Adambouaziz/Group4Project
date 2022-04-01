@@ -96,5 +96,15 @@ public class AppControllerTest {
         assertEquals(mock ,mock);
     }
 
+    @Test
+    @DisplayName("should contain a static list of all Articles")
+    public void testTopHeadlinesAustria(){
+        AppController app = new AppController();
+        app.setArticles(mock);
+        assertNotNull(mock);
+
+        assertEquals(mock, mock);
+    }
+
 
 }

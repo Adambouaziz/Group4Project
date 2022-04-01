@@ -18,6 +18,8 @@ public class AppController {
         liste = articles;
         generateMockList();
         getAllNewsBitcoin();
+        getArticleCount();
+        getTopHeadlinesAustria();
         filterList("bitcoin", articles);
         getArticles();
         setArticles(articles);
