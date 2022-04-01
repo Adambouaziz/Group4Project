@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
@@ -22,16 +23,14 @@ public class Menu {
     }
 
     private void handleInput(String input){
-        Scanner scanner = new Scanner(System.in);
-        String s = scanner.next();
-        s = input;
-        if (input == "a"){
+        scan = input;
+        if (Objects.equals(input, "a")){
 
-        }else if (input == "b"){
+        }else if (Objects.equals(input, "b")){
 
-        }else if (input == "y"){
+        }else if (Objects.equals(input, "y")){
 
-        }else if (input == "q"){
+        }else if (Objects.equals(input, "q")){
             printExitMessage();
             System.exit(0);
         }else{
