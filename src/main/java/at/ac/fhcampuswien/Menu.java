@@ -28,9 +28,6 @@ public class Menu {
 
         }else if (Objects.equals(input, "b")) {
             getAllNewsBitcoin(controller);
-
-
-
         }else if (Objects.equals(input, "y")){
 
         }else if (Objects.equals(input, "q")){

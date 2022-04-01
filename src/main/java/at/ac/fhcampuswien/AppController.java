@@ -17,18 +17,25 @@ public class AppController {
     public AppController(){
         liste = articles;
         generateMockList();
+        getAllNewsBitcoin();
+        filterList("bitcoin", articles);
+        getArticles();
+        setArticles(articles);
     }
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;
+        articles = generateMockList();
     }
+
+    public List<Article> getArticles() {return articles;}
 
     public int getArticleCount(){
         return count;
     }
 
     /*public List<Article> getTopHeadlinesAustria(){
-
+        return;
     }*/
 
     public List<Article> getAllNewsBitcoin(){
@@ -65,7 +72,7 @@ public class AppController {
         Article hanf = new Article ("Schaufenster", "Ist Hanf das Bessere Holz?");
 
 
-        List<Article> liste = Arrays.asList(bitcoinRave, deadCat, floridaMan, transformers, encanto, cyborgs, running, doomsday, invest, chalamet, dogs, kaliumJod, minister, boerse, hanf);
+        liste = Arrays.asList(bitcoinRave, deadCat, floridaMan, transformers, encanto, cyborgs, running, doomsday, invest, chalamet, dogs, kaliumJod, minister, boerse, hanf);
         return liste;
     }
 }
