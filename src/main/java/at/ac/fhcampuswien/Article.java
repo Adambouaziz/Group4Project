@@ -3,12 +3,20 @@ package at.ac.fhcampuswien;
 public class Article {
     private String author;
     private String title;
+    private String description;
+    private String url;
+    private String urlToImage;
+    private String publishedAt;
+    private String content;
 
     public Article(String author, String title){
         setAuthor(author);
         setTitle(title);
-        getAuthor();
-        getTitle();
+        setDescription(description);
+        setUrl(url);
+        setUrlToImage(urlToImage);
+        setPublishedAt(publishedAt);
+        setContent(content);
     }
 
     public String getAuthor(){
@@ -27,11 +35,54 @@ public class Article {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUrlToImage() {
+        return urlToImage;
+    }
+
+    public void setUrlToImage(String urlToImage) {
+        this.urlToImage = urlToImage;
+    }
+
+    public String getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(String publishedAt) {
+        this.publishedAt = publishedAt;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
-        return "Article{" +
-                "author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                '}';
+        return "title: " + getTitle() + "\n" +
+                "author: " + getAuthor() + "\n" +
+                "description: " + getDescription() + "\n" +
+                "url: " + getUrl() + "\n" +
+                "urlToImage: " + getUrlToImage() + "\n" +
+                "publishedAt: " + getPublishedAt() + "\n" +
+                "content: " + getContent() + "\n";
     }
 }
