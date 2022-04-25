@@ -8,6 +8,9 @@ public class Article {
     private String urlToImage;
     private String publishedAt;
     private String content;
+    private Source source;
+
+    NewsResponse resp = new NewsResponse();
 
     public Article(String author, String title){
         setAuthor(author);
@@ -17,6 +20,15 @@ public class Article {
         setUrlToImage(urlToImage);
         setPublishedAt(publishedAt);
         setContent(content);
+        setSource(source);
+    }
+
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
     }
 
     public String getAuthor(){
@@ -77,7 +89,8 @@ public class Article {
 
     @Override
     public String toString() {
-        return "title: " + getTitle() + "\n" +
+        return "source: " + getSource() + "\n" +
+                "title: " + getTitle() + "\n" +
                 "author: " + getAuthor() + "\n" +
                 "description: " + getDescription() + "\n" +
                 "url: " + getUrl() + "\n" +
