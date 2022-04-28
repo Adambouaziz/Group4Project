@@ -1,35 +1,51 @@
 package at.ac.fhcampuswien;
 
-import okhttp3.Headers;
+import Enums.Category;
+import Enums.Country;
+import Enums.Language;
+import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import java.io.IOException;
+import java.util.List;
 
 public class NewsApi {
 
     private final OkHttpClient client = new OkHttpClient();
+    Gson gson = new Gson();
 
-    public void run() throws Exception {
-        topHeadLinesAustriaApi();
-    }
-/*z*/
+    String begUrl = "https://newsapi.org/v2";
+    String topHeadLinesAustriaUrl = "/top-headlines?";
 
-    public void topHeadLinesAustriaApi() throws Exception {
+    private static final String API_KEY = "dece954c62a847f19648591d3110f141";
+
+
+    public String getRun(String url) throws Exception {
         Request request = new Request.Builder()
-                .url("https://newsapi.org/v2/everything?q=Austria&apiKey=dece954c62a847f19648591d3110f141")
+                .url(url)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-
-            Headers responseHeaders = response.headers();
-            for (int i = 0; i < responseHeaders.size(); i++) {
-                System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
-            }
-
-            System.out.println(response.body().string());
+            return response.body().string();
         }
     }
+
+    public String howToUrlTopHeadlines(Language lang, Category cat, Country cou){
+        return begUrl +
+                topHeadLinesAustriaUrl +
+                "&language=" + lang +
+                "&category=" + cat +
+                "&country=" + cou +
+                "&apiKey=" + API_KEY;
+    }
+
+    public List<Article> response(String url) throws Exception {
+        String gString = getRun(url);
+
+        NewsResponse newsResponse = gson.fromJson(gString, NewsResponse.class);
+        return newsResponse.getArticles();
+    }
+
+
 }
