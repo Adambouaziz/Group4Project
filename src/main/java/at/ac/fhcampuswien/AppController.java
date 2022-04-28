@@ -1,5 +1,9 @@
 package at.ac.fhcampuswien;
 
+import Enums.Category;
+import Enums.Country;
+import Enums.Language;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -12,16 +16,16 @@ public class AppController {
     static List<Article> liste;
     public int count = generateMockList().size();
 
+    NewsApi newsApi = new NewsApi();
+
     public static List<Article> allNewsBitcoin = new ArrayList<Article>();
 
-    public AppController(){
+    public AppController() throws Exception {
         liste = articles;
         generateMockList();
         getAllNewsBitcoin();
-        getArticleCount();
         getTopHeadlinesAustria();
         filterList("bitcoin", articles);
-        getArticles();
         setArticles(articles);
     }
 
@@ -35,8 +39,10 @@ public class AppController {
     public int getArticleCount(){
         return count;
     }
-    public List<Article> getTopHeadlinesAustria(){
-            return generateMockList();
+
+    public List<Article> getTopHeadlinesAustria() throws Exception {
+            articles = newsApi.response(newsApi.howToUrlTopHeadlines(Language.GERMAN, Category.GENERAL, Country.AUSTRIA));
+            return articles;
     }
 
     public List<Article> getAllNewsBitcoin(){

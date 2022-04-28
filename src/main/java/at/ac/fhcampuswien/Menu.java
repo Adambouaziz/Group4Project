@@ -11,7 +11,10 @@ public class Menu {
     private static final String EXIT_MESSAGE = "See ya later Alligator!";
     String scan;
 
-    public void start(){
+    public Menu() throws Exception {
+    }
+
+    public void start() throws Exception {
         for (int i = 1; i > 0; i++){
             printMenu();
             Scanner scanner = new Scanner(System.in);
@@ -22,7 +25,7 @@ public class Menu {
 
     }
 
-    private void handleInput(String input){
+    private void handleInput(String input) throws Exception {
         scan = input;
         if (Objects.equals(input, "a")){
 
@@ -47,7 +50,7 @@ public class Menu {
         System.out.println("Article Count seems to be: "+ctrl.getArticleCount());
     }
 
-    private void getTopHeadlinesAustria(AppController ctrl){
+    private void getTopHeadlinesAustria(AppController ctrl) throws Exception {
 
         System.out.println(ctrl.getTopHeadlinesAustria());
     }

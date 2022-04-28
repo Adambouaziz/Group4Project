@@ -51,7 +51,7 @@ public class AppControllerTest {
 
     @Test
     @DisplayName("should filter out every Article where title contains bitcoin")
-    public void testFilterList(){
+    public void testFilterList() throws Exception {
         AppController con = new AppController();
         con.setArticles(mock);
 
@@ -64,7 +64,7 @@ public class AppControllerTest {
 
     @Test
     @DisplayName("should implement filterList and therefore do the same")
-    public void testAllNewsBitcoin(){
+    public void testAllNewsBitcoin() throws Exception {
         AppController tro = new AppController();
         tro.setArticles(mock);
 
@@ -78,7 +78,7 @@ public class AppControllerTest {
 
     @Test
     @DisplayName("test to see if Article count is right number")
-    public void testGetArticleCount(){
+    public void testGetArticleCount() throws Exception {
         AppController app = new AppController();
         int test = 0;
 
@@ -89,7 +89,7 @@ public class AppControllerTest {
 
     @Test
     @DisplayName("should contain Articles")
-    public void testSetArticle(){
+    public void testSetArticle() throws Exception {
         AppController app = new AppController();
         app.setArticles(mock);
         assertNotNull(mock);
@@ -98,7 +98,7 @@ public class AppControllerTest {
 
     @Test
     @DisplayName("should contain a static list of all Articles")
-    public void testTopHeadlinesAustria(){
+    public void testTopHeadlinesAustria() throws Exception {
         AppController app = new AppController();
         app.setArticles(mock);
         assertNotNull(mock);

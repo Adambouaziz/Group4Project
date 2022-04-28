@@ -27,7 +27,7 @@ public class GuiMenu extends JFrame implements ActionListener{
     List<Article> text = new ArrayList<>();
     int count;
 
-    public GuiMenu() {
+    public GuiMenu() throws Exception {
         Container pane = frame.getContentPane();
         JLabel welcome = new JLabel("**Welcome to this beautiful News App!**");
         JLabel label1 = new JLabel( "<html><h2>Choose what to do: </h2><html>" +
@@ -72,7 +72,11 @@ public class GuiMenu extends JFrame implements ActionListener{
         String s = (String) box.getSelectedItem();
 
         if (Objects.equals(s, "a")){
-            text = app.getTopHeadlinesAustria();
+            try {
+                text = app.getTopHeadlinesAustria();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
             area.setText(String.valueOf(text));
 
         }else if (Objects.equals(s, "b")){
