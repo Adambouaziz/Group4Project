@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import java.io.IOException;
 import java.util.List;
 
 public class NewsApi {
@@ -21,12 +22,13 @@ public class NewsApi {
     private static final String API_KEY = "dece954c62a847f19648591d3110f141";
 
 
-    public String getRun(String url) throws Exception {
+    public String getRun(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             return response.body().string();
         }
     }
