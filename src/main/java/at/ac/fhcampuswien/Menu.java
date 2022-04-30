@@ -9,7 +9,7 @@ public class Menu {
     AppController controller = new AppController();
 
     private static final String INVALID_INPUT_MESSAGE = "No<3";
-    private static final String EXIT_MESSAGE = "See ya later Alligator!";
+    private static final String EXIT_MESSAGE = "See ya later Alligator<3!";
     String scan;
 
 
