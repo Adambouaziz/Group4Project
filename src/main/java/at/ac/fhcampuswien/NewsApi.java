@@ -7,6 +7,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class NewsApi {
@@ -60,6 +63,14 @@ public class NewsApi {
 
         /*gString = gson.toJson(newsResponse);
         System.out.println(gString);*/
+    }
+
+    public int parseResponse1(String url) throws IOException {
+        String gString = getRun(url);
+
+
+        NewsResponse newsResponse = gson.fromJson(gString, NewsResponse.class);
+        return newsResponse.getTotalResult();
     }
 
 }

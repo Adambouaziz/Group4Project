@@ -6,14 +6,14 @@ import Enums.Language;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        /*Menu menu = new Menu();
-        menu.start();*/
+        Menu menu = new Menu();
+        menu.start();
 
         /*NewsApi newsApi = new NewsApi();
         System.out.println(newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Language.GERMAN, Category.GENERAL, Country.AUSTRIA)));
 */
-        GuiMenu guiMenu = new GuiMenu();
-        guiMenu.pack();
+        /*GuiMenu guiMenu = new GuiMenu();
+        guiMenu.pack();*/
 
     }
 }

@@ -5,6 +5,8 @@ public class Source {
     private String id;
     private String name;
 
+    NewsResponse newsResponse = new NewsResponse();
+
     public Source(){
         setId(id);
         setName(name);
@@ -26,4 +28,16 @@ public class Source {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "{" + "\n" +
+                " status:'" + newsResponse.getStatus() + "\n" +
+                " totalResult:" + newsResponse.getTotalResult() + "\n" +
+                " articles:" + "\n" +
+                " }" + "\n" +
+                "  Source{" + "\n" +
+                "  id:'" + getId() + "\n" +
+                "  name:'" + getName() + "\n" +
+                "  }";
+    }
 }

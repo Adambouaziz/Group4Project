@@ -88,13 +88,14 @@ public class Article {
 
     @Override
     public String toString() {
-        return "source: " + getSource() + "\n" +
-                "title: " + getTitle() + "\n" +
-                "author: " + getAuthor() + "\n" +
-                "description: " + getDescription() + "\n" +
-                "url: " + getUrl() + "\n" +
-                "urlToImage: " + getUrlToImage() + "\n" +
-                "publishedAt: " + getPublishedAt() + "\n" +
-                "content: " + getContent() + "\n";
+        return  "\n" +
+                getSource() + "\n" +
+                "   title: " + getTitle() + "\n" +
+                "   author: " + getAuthor() + "\n" +
+                "   description: " + getDescription() + "\n" +
+                "   url: " + getUrl() + "\n" +
+                "   urlToImage: " + getUrlToImage() + "\n" +
+                "   publishedAt: " + getPublishedAt() + "\n" +
+                "   content: " + getContent() + "\n";
     }
 }

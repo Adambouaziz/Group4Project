@@ -8,6 +8,11 @@ public class NewsResponse {
     private int totalResult;
     private List<Article> articles;
 
+    public NewsResponse(){
+        setTotalResult(totalResult);
+        setStatus(status);
+    }
+
     public String getStatus() {
         return status;
     }
