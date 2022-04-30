@@ -16,9 +16,6 @@ public class NewsApi {
     private final OkHttpClient client = new OkHttpClient();
     Gson gson = new Gson();
 
-    String begUrl = "https://newsapi.org/v2";
-    String topHeadLinesAustriaUrl = "/top-headlines?";
-
     private static final String API_KEY = "dece954c62a847f19648591d3110f141";
 
 
@@ -33,21 +30,24 @@ public class NewsApi {
         }
     }
 
-    public String howToUrlTopHeadlines(Language lang, Category cat, Country cou){
-        return begUrl +
-                topHeadLinesAustriaUrl +
-                "&language=" + lang +
-                "&category=" + cat +
-                "&country=" + cou +
-                "&apiKey=" + API_KEY;
-    }
 
-    public List<Article> response(String url) throws Exception {
+
+    public List<Article> parseResponse(String url) throws IOException {
         String gString = getRun(url);
+
 
         NewsResponse newsResponse = gson.fromJson(gString, NewsResponse.class);
         return newsResponse.getArticles();
     }
 
 
+        /*
+        gString = gson.toJson(newsResponse);
+        System.out.println(gString);
+
+         */
+
+
 }
+
+
