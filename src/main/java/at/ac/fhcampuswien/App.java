@@ -9,11 +9,11 @@ public class App {
         /*Menu menu = new Menu();
         menu.start();*/
 
-        NewsApi newsApi = new NewsApi();
-        System.out.println(newsApi.response(newsApi.howToUrlTopHeadlines(Language.GERMAN, Category.GENERAL, Country.AUSTRIA)));
-
-        /*GuiMenu guiMenu = new GuiMenu();
-        guiMenu.pack();*/
+        /*NewsApi newsApi = new NewsApi();
+        System.out.println(newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Language.GERMAN, Category.GENERAL, Country.AUSTRIA)));
+*/
+        GuiMenu guiMenu = new GuiMenu();
+        guiMenu.pack();
 
     }
 }

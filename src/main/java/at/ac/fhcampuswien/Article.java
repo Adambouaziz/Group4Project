@@ -10,7 +10,6 @@ public class Article {
     private String content;
     private Source source;
 
-    NewsResponse resp = new NewsResponse();
 
     public Article(String author, String title){
         setAuthor(author);

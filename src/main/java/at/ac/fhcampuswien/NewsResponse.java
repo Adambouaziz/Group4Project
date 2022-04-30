@@ -8,34 +8,27 @@ public class NewsResponse {
     private int totalResult;
     private List<Article> articles;
 
-    public NewsResponse(){
-        setStatus(status);
-        setArticles(articles);
-        setTotalResult(totalResult);
-    }
-
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public int getTotalResult() {
         return totalResult;
     }
 
-    public void setTotalResult(int totalResult) {
-        this.totalResult = totalResult;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public List<Article> getArticles() {
-        return articles;
+    public void setTotalResult(int totalResult) {
+        this.totalResult = totalResult;
     }
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
 
+    public List<Article> getArticles() {
+       return articles;
+    }
 }

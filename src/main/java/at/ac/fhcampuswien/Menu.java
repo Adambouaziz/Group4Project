@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -11,10 +12,8 @@ public class Menu {
     private static final String EXIT_MESSAGE = "See ya later Alligator!";
     String scan;
 
-    public Menu() throws Exception {
-    }
 
-    public void start() throws Exception {
+    public void start() throws IOException {
         for (int i = 1; i > 0; i++){
             printMenu();
             Scanner scanner = new Scanner(System.in);
@@ -25,14 +24,16 @@ public class Menu {
 
     }
 
-    private void handleInput(String input) throws Exception {
+    private void handleInput(String input) throws IOException {
         scan = input;
         if (Objects.equals(input, "a")){
 
             getTopHeadlinesAustria(controller);
 
         }else if (Objects.equals(input, "b")) {
+
             getAllNewsBitcoin(controller);
+
         }else if (Objects.equals(input, "y")){
 
             getArticleCount(controller);
@@ -50,12 +51,12 @@ public class Menu {
         System.out.println("Article Count seems to be: "+ctrl.getArticleCount());
     }
 
-    private void getTopHeadlinesAustria(AppController ctrl) throws Exception {
+    private void getTopHeadlinesAustria(AppController ctrl) throws IOException {
 
         System.out.println(ctrl.getTopHeadlinesAustria());
     }
 
-    private void getAllNewsBitcoin(AppController ctrl){
+    private void getAllNewsBitcoin(AppController ctrl) throws IOException {
         System.out.println(ctrl.getAllNewsBitcoin());
     }
 

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -80,7 +81,11 @@ public class GuiMenu extends JFrame implements ActionListener{
             area.setText(String.valueOf(text));
 
         }else if (Objects.equals(s, "b")){
-            text = app.getAllNewsBitcoin();
+            try {
+                text = app.getAllNewsBitcoin();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             area.setText(String.valueOf(text));
 
         }else if (Objects.equals(s, "y")){

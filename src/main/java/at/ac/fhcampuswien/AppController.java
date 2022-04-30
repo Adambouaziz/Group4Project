@@ -1,9 +1,8 @@
 package at.ac.fhcampuswien;
 
-import Enums.Category;
-import Enums.Country;
-import Enums.Language;
+import Enums.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -13,44 +12,32 @@ import java.util.stream.Collectors;
 
 public class AppController {
     private List<Article> articles;
-    static List<Article> liste;
-    public int count = generateMockList().size();
 
     NewsApi newsApi = new NewsApi();
 
     public static List<Article> allNewsBitcoin = new ArrayList<Article>();
 
-    public AppController() throws Exception {
-        liste = articles;
-        generateMockList();
-        getAllNewsBitcoin();
-        getTopHeadlinesAustria();
-        filterList("bitcoin", articles);
-        setArticles(articles);
-    }
-
     public void setArticles(List<Article> articles) {
         this.articles = articles;
-        articles = generateMockList();
     }
 
     public List<Article> getArticles() {return articles;}
 
     public int getArticleCount(){
-        return count;
+        return articles.size();
     }
 
-    public List<Article> getTopHeadlinesAustria() throws Exception {
-            articles = newsApi.response(newsApi.howToUrlTopHeadlines(Language.GERMAN, Category.GENERAL, Country.AUSTRIA));
-            return articles;
+    public List<Article> getTopHeadlinesAustria() throws IOException {
+        articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT));
+        return articles;
     }
 
-    public List<Article> getAllNewsBitcoin(){
-        return filterList("bitcoin", articles);
+    public List<Article> getAllNewsBitcoin() throws IOException {
+        articles = newsApi.parseResponse(newsApi.howToUrlAllNewsBitcoin(Endpoint.EVERYTHING, Language.GERMAN, Query.BITCOIN));
+        return articles;
     }
 
     protected static List<Article> filterList(String query, List<Article> articles){
-        articles = liste;
 
         Predicate<Article> bitcoin = article -> article.getTitle().toLowerCase().contains(query.toLowerCase());
 
@@ -61,7 +48,7 @@ public class AppController {
         return allNewsBitcoin;
     }
 
-    private static List<Article> generateMockList(){
+    /*private static List<Article> generateMockList(){
         Article bitcoinRave = new Article("Steve Smith", "The Bitcoins are raving");
         Article deadCat = new Article("Liliane Haider", "My poor cat, omg...");
         Article floridaMan = new Article("Franz Jospeh", "Florida man burned down house with spaghetti sauce");
@@ -81,5 +68,5 @@ public class AppController {
 
         liste = Arrays.asList(bitcoinRave, deadCat, floridaMan, transformers, encanto, cyborgs, running, doomsday, invest, chalamet, dogs, kaliumJod, minister, boerse, hanf);
         return liste;
-    }
+    }*/
 }
