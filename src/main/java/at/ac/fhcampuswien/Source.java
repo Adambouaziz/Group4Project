@@ -30,14 +30,10 @@ public class Source {
 
     @Override
     public String toString() {
-        return "{" + "\n" +
-                " status:'" + newsResponse.getStatus() + "\n" +
-                " totalResult:" + newsResponse.getTotalResult() + "\n" +
-                " articles:" + "\n" +
-                " }" + "\n" +
-                "  Source{" + "\n" +
-                "  id:'" + getId() + "\n" +
-                "  name:'" + getName() + "\n" +
+        return  " {" + "\n" +
+                "  Source: {" + "\n" +
+                "    id:'" + getId() + "\n" +
+                "    name:'" + getName() + "\n" +
                 "  }";
     }
 }

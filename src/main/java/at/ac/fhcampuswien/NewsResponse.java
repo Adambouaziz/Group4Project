@@ -18,7 +18,7 @@ public class NewsResponse {
     }
 
     public int getTotalResult() {
-        return totalResult;
+        return articles.size();
     }
 
     public void setStatus(String status) {

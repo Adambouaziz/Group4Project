@@ -19,7 +19,6 @@ public class NewsApi {
 
     String begUrl = "https://newsapi.org";
 
-
     private static final String API_KEY = "dece954c62a847f19648591d3110f141";
 
 
@@ -35,21 +34,25 @@ public class NewsApi {
         }
 
 
-    public String howToUrlTopHeadlines(Endpoint end, Language lang, Category cat, Country cou, SortBy sort){
+    public String howToUrlTopHeadlines(Endpoint end, Language lang, Category cat, Country cou, SortBy sort, Page page, PageSize size){
         return begUrl +
                 end.endpoint + "?" +
                 "language=" + lang.language +
                 "&category=" + cat.category +
                 "&country=" + cou.country +
                 "&sortBy=" + sort.sortBy +
+                "&page=" + page.page +
+                "&pageSize=" + size.pageSize +
                 "&apiKey=" + API_KEY;
     }
 
-    public String howToUrlAllNewsBitcoin(Endpoint end, Language lang, Query quer){
+    public String howToUrlAllNewsBitcoin(Endpoint end, Language lang, Query quer, Page page, PageSize size){
             return begUrl +
                     end.endpoint + "?" +
                     "language=" + lang.language +
                     "&q=" + quer.query +
+                    "&page=" + page.page +
+                    "&pageSize=" + size.pageSize +
                     "&apiKey=" + API_KEY;
 
     }
@@ -57,20 +60,17 @@ public class NewsApi {
     public List<Article> parseResponse(String url) throws IOException {
         String gString = getRun(url);
 
-
         NewsResponse newsResponse = gson.fromJson(gString, NewsResponse.class);
+
+        System.out.println("{" +
+                           "\n" +
+                           "status:" + newsResponse.getStatus() + "\n" +
+                           "totalResults:" + newsResponse.getTotalResult() + "\n" +
+                           "articles:");
+
         return newsResponse.getArticles();
 
         /*gString = gson.toJson(newsResponse);
         System.out.println(gString);*/
     }
-
-    public int parseResponse1(String url) throws IOException {
-        String gString = getRun(url);
-
-
-        NewsResponse newsResponse = gson.fromJson(gString, NewsResponse.class);
-        return newsResponse.getTotalResult();
-    }
-
 }

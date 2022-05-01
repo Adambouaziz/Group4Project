@@ -96,6 +96,7 @@ public class Article {
                 "   url: " + getUrl() + "\n" +
                 "   urlToImage: " + getUrlToImage() + "\n" +
                 "   publishedAt: " + getPublishedAt() + "\n" +
-                "   content: " + getContent() + "\n";
+                "   content: " + getContent() + "\n" +
+                " }" + "\n";
     }
 }

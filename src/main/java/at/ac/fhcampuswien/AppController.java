@@ -28,12 +28,12 @@ public class AppController {
     }
 
     public List<Article> getTopHeadlinesAustria() throws IOException {
-        articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT));
+        articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
         return articles;
     }
 
     public List<Article> getAllNewsBitcoin() throws IOException {
-        articles = newsApi.parseResponse(newsApi.howToUrlAllNewsBitcoin(Endpoint.EVERYTHING, Language.GERMAN, Query.BITCOIN));
+        articles = newsApi.parseResponse(newsApi.howToUrlAllNewsBitcoin(Endpoint.EVERYTHING, Language.GERMAN, Query.BITCOIN, Page.PAGE, PageSize.PAGESIZE));
         return articles;
     }
 
