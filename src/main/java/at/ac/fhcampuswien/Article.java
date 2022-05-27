@@ -26,12 +26,23 @@ public class Article {
         return source;
     }
 
+    public String getSourceName() {
+        return source.getName();
+    }
+
     public void setSource(Source source) {
         this.source = source;
     }
 
     public String getAuthor(){
         return author;
+    }
+
+    public int getAuthorLength(){
+        if (author == null){
+            return 0;
+        }
+        return author.length();
     }
 
     public String getTitle(){
@@ -48,6 +59,17 @@ public class Article {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getDescriptionLength(){
+        try {
+            return description.length();
+        }
+        catch (NullPointerException e){
+            e.getMessage();
+            System.out.println("Description of the Article is null");
+            return 0;
+        }
     }
 
     public void setDescription(String description) {

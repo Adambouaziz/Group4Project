@@ -3,10 +3,7 @@ package at.ac.fhcampuswien;
 import Enums.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -69,4 +66,44 @@ public class AppController {
         liste = Arrays.asList(bitcoinRave, deadCat, floridaMan, transformers, encanto, cyborgs, running, doomsday, invest, chalamet, dogs, kaliumJod, minister, boerse, hanf);
         return liste;
     }*/
+    public String getMostPopuplarSources(){
+
+        String mostTimesSource = null;
+        int SourceTimes = 0;
+        Map<String, Integer> map = new HashMap<>();
+
+        for (Article a : articles){
+            if (map.merge(a.getSourceName(), 1, Integer::sum) > SourceTimes){
+                SourceTimes = map.get(a.getSourceName());
+                mostTimesSource = a.getSourceName();
+            }
+        }
+        return mostTimesSource;
+    }
+
+    public String getLongestAuthorName(){
+        Article longest = articles.stream().max(Comparator.comparingInt(Article::getAuthorLength))
+                .orElse(null);
+
+        return longest.getAuthor();
+    }
+
+    public int getNewYorkTimesArticleCount(){
+
+        List<Article> streamedArticle = articles.stream()
+                .filter(article -> article.getSourceName().toString().toLowerCase().contains("newyorktimes"))
+                .collect(Collectors.toList());
+
+        return streamedArticle.size();
+    }
+
+    public List<Article> getShortHeadlines(){
+
+        return articles.stream().filter(article -> article.getTitle().length() < 15).collect(Collectors.toList());
+    }
+
+
+
+
+
 }
