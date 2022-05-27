@@ -81,11 +81,7 @@ public class GuiMenu extends JFrame implements ActionListener{
             area.setText(String.valueOf(text));
 
         }else if (Objects.equals(s, "b")){
-            try {
-                text = app.getAllNewsBitcoin();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            text = app.getAllNewsBitcoin();
             area.setText(String.valueOf(text));
 
         }else if (Objects.equals(s, "y")){

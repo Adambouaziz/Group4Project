@@ -39,8 +39,26 @@ public class Menu {
             getArticleCount(controller);
 
         }else if (Objects.equals(input, "q")){
+
             printExitMessage();
             System.exit(0);
+
+        }else if (Objects.equals(input, "ab1") && controller.getArticles() != null){
+
+            getMostPopularSources(controller);
+
+        }else if (Objects.equals(input, "ab2") && controller.getArticles() != null){
+
+            getLongestAuthorName(controller);
+
+        }else if (Objects.equals(input, "ab3") && controller.getArticles() != null){
+
+            getNewYorkTimesArticleCount(controller);
+
+        }else if (Objects.equals(input, "ab4") && controller.getArticles() != null){
+
+            getShortHeadlines(controller);
+
         }else{
             printInvalidInputMessage();
         }
@@ -51,13 +69,29 @@ public class Menu {
         System.out.println("Article Count seems to be: "+ctrl.getArticleCount());
     }
 
-    private void getTopHeadlinesAustria(AppController ctrl) throws IOException {
+    private void getTopHeadlinesAustria(AppController ctrl) {
 
         System.out.println(ctrl.getTopHeadlinesAustria());
     }
 
-    private void getAllNewsBitcoin(AppController ctrl) throws IOException {
+    private void getAllNewsBitcoin(AppController ctrl) {
         System.out.println(ctrl.getAllNewsBitcoin());
+    }
+
+    private void getMostPopularSources(AppController ctrl){
+        System.out.println(ctrl.getMostPopuplarSources());
+    }
+
+    private void getLongestAuthorName(AppController ctrl){
+        System.out.println(ctrl.getLongestAuthorName());
+    }
+
+    private void getNewYorkTimesArticleCount(AppController ctrl){
+        System.out.println(ctrl.getNewYorkTimesArticleCount());
+    }
+
+    private void getShortHeadlines(AppController ctrl){
+        System.out.println(ctrl.getShortHeadlines());
     }
 
     private static void printExitMessage(){System.out.println(EXIT_MESSAGE);}
@@ -81,6 +115,10 @@ public class Menu {
         System.out.println("Enter what you wanna do:");
         System.out.println("a: Get top headlines Austria");
         System.out.println("b: Get all news about about bitcoin");
+        System.out.println("  ab1: Get most popular sources");
+        System.out.println("  ab2: Get longest author name");
+        System.out.println("  ab3: Get NewYorkTimes article count");
+        System.out.println("  ab4: Get short articles");
         System.out.println("y: Count articles");
         System.out.println("q: Quit program");
     }

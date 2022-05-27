@@ -24,24 +24,41 @@ public class AppController {
         return articles.size();
     }
 
-    public List<Article> getTopHeadlinesAustria() throws IOException {
-        articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
+    public List<Article> getTopHeadlinesAustria(){
+        try {
+            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
+        } catch (NewsApiException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.getCause();
+        }
         return articles;
     }
 
-    public List<Article> getAllNewsBitcoin() throws IOException {
-        articles = newsApi.parseResponse(newsApi.howToUrlAllNewsBitcoin(Endpoint.EVERYTHING, Language.GERMAN, Query.BITCOIN, Page.PAGE, PageSize.PAGESIZE));
+    public List<Article> getAllNewsBitcoin(){
+        try {
+            articles = newsApi.parseResponse(newsApi.howToUrlAllNewsBitcoin(Endpoint.EVERYTHING, Language.GERMAN, Query.BITCOIN, Page.PAGE, PageSize.PAGESIZE));
+        } catch (NewsApiException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.getCause();
+        }
+
         return articles;
     }
 
     protected static List<Article> filterList(String query, List<Article> articles){
 
-        Predicate<Article> bitcoin = article -> article.getTitle().toLowerCase().contains(query.toLowerCase());
+        if (articles != null) {
+            try {
+                Predicate<Article> bitcoin = article -> article.getTitle().toLowerCase().contains(query.toLowerCase());
 
-        allNewsBitcoin = articles.stream().filter(bitcoin)
-                .collect(Collectors.toList());
-
-
+                allNewsBitcoin = articles.stream().filter(bitcoin)
+                        .collect(Collectors.toList());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         return allNewsBitcoin;
     }
 
@@ -91,7 +108,7 @@ public class AppController {
     public int getNewYorkTimesArticleCount(){
 
         List<Article> streamedArticle = articles.stream()
-                .filter(article -> article.getSourceName().toString().toLowerCase().contains("newyorktimes"))
+                .filter(article -> article.getSourceName().toLowerCase().contains("newyorktimes"))
                 .collect(Collectors.toList());
 
         return streamedArticle.size();
@@ -101,9 +118,5 @@ public class AppController {
 
         return articles.stream().filter(article -> article.getTitle().length() < 15).collect(Collectors.toList());
     }
-
-
-
-
 
 }
