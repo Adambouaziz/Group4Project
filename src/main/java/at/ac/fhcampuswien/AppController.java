@@ -140,28 +140,39 @@ public class AppController {
     }
 
     public List<Article> getDescriptionSorted(){
+        List<Article> descriptionSort = null;
+        try {
+            Comparator<Article> sortByLength = Comparator.comparingInt(Article::getDescriptionLength);
+            Comparator<Article> sortByLetter = Comparator.comparing(Article::getDescription);
 
-        Comparator<Article> sortByLength = Comparator.comparingInt(Article::getDescriptionLength);
-        Comparator<Article> sortByLetter = Comparator.comparing(Article::getDescription);
+            Comparator<Article> sortedByLengthOrLetter = sortByLength.thenComparing(sortByLetter);
 
-        Comparator<Article> sortedByLengthOrLetter = sortByLength.thenComparing(sortByLetter);
-
-        return articles.stream().sorted(sortedByLengthOrLetter).collect(Collectors.toList());
+            descriptionSort = articles.stream().sorted(sortedByLengthOrLetter).collect(Collectors.toList());
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return descriptionSort;
     }
 
 
-    public List<String> getMostPopuplarSources(){
-        Comparator<Map.Entry<String, Long>> reversed = Map.Entry.comparingByValue();
-        Comparator<Map.Entry<String, Long>> entryComparator = Collections.reverseOrder(reversed);
+    public String getMostPopuplarSources(){
+        String mostPopular = null;
+        try {
+            Comparator<Map.Entry<String, Long>> reversed = Map.Entry.comparingByValue();
+            Comparator<Map.Entry<String, Long>> entryComparator = Collections.reverseOrder(reversed);
 
-        return articles.stream()
-                .collect(Collectors.groupingBy(Article::getSourceName, Collectors.counting()))
-                .entrySet()
-                .stream()
-                .sorted(entryComparator)
-                .map(Map.Entry::getKey)
-                .limit(2)
-                .collect(Collectors.toList());
+            mostPopular = articles.stream()
+                    .collect(Collectors.groupingBy(Article::getSourceName, Collectors.counting()))
+                    .entrySet()
+                    .stream()
+                    .sorted(entryComparator)
+                    .map(Map.Entry::getKey)
+                    .limit(2)
+                    .toString();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return mostPopular;
     }
 
     public String getLongestAuthorName() {
@@ -175,10 +186,14 @@ public class AppController {
     }
 
     public int getNewYorkTimesArticleCount(){
-
-        List<Article> streamedArticle = articles.stream()
-                .filter(article -> article.getSourceName().toLowerCase().contains("newyorktimes"))
-                .collect(Collectors.toList());
+        List<Article> streamedArticle = null;
+        try {
+            streamedArticle = articles.stream()
+                    .filter(article -> article.getSourceName().toLowerCase().contains("newyorktimes"))
+                    .collect(Collectors.toList());
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
 
         return streamedArticle.size();
     }

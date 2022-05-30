@@ -121,6 +121,7 @@ public class Article {
                 "   title: " + getTitle() + "\n" +
                 "   author: " + getAuthor() + "\n" +
                 "   description: " + getDescription() + "\n" +
+                "   description length: " +getDescriptionLength() + "\n" +
                 "   url: " + getUrl() + "\n" +
                 "   urlToImage: " + getUrlToImage() + "\n" +
                 "   publishedAt: " + getPublishedAt() + "\n" +
