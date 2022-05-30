@@ -155,24 +155,18 @@ public class AppController {
     }
 
 
-    public String getMostPopuplarSources(){
-        String mostPopular = null;
-        try {
+    public List<String> getMostPopuplarSources(){
             Comparator<Map.Entry<String, Long>> reversed = Map.Entry.comparingByValue();
             Comparator<Map.Entry<String, Long>> entryComparator = Collections.reverseOrder(reversed);
 
-            mostPopular = articles.stream()
+            return articles.stream()
                     .collect(Collectors.groupingBy(Article::getSourceName, Collectors.counting()))
                     .entrySet()
                     .stream()
                     .sorted(entryComparator)
                     .map(Map.Entry::getKey)
                     .limit(2)
-                    .toString();
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-        return mostPopular;
+                    .collect(Collectors.toList());
     }
 
     public String getLongestAuthorName() {
