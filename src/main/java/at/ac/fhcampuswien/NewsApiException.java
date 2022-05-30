@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien;
 
+import okhttp3.Response;
 import okhttp3.internal.http2.ErrorCode;
 
 public class NewsApiException extends Exception{

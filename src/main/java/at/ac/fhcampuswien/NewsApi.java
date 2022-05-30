@@ -2,6 +2,7 @@ package at.ac.fhcampuswien;
 
 import Enums.*;
 import com.google.gson.Gson;
+import okhttp3.Connection;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -13,7 +14,6 @@ public class NewsApi {
 
     private final OkHttpClient client = new OkHttpClient();
     Gson gson = new Gson();
-
     String begUrl = "https://newsapi.org";
 
     private static final String API_KEY = "dece954c62a847f19648591d3110f141";
@@ -36,7 +36,7 @@ public class NewsApi {
         }
 
             try (Response response = client.newCall(request).execute()) {
-                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                if (!response.isSuccessful()) throw new IOException("Unexpected code..." + response);
                 return Objects.requireNonNull(response.body()).string();
             }
 

@@ -61,7 +61,7 @@ public class Menu {
 
         }else if (Objects.equals(input, "ab5") && controller.getArticles() != null) {
 
-            controller.getDescriptionSorted();
+            getDescriptionSorted(controller);
 
         }else{
             printInvalidInputMessage();
@@ -96,6 +96,10 @@ public class Menu {
 
     private void getShortHeadlines(AppController ctrl){
         System.out.println(ctrl.getShortHeadlines());
+    }
+
+    private void getDescriptionSorted(AppController ctrl){
+        System.out.println(ctrl.getDescriptionSorted());
     }
 
     private static void printExitMessage(){System.out.println(EXIT_MESSAGE);}
