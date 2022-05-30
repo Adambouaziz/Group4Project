@@ -39,10 +39,14 @@ public class Article {
     }
 
     public int getAuthorLength(){
-        if (author == null){
-            return 0;
-        }
-        return author.length();
+       try {
+           return author.length();
+       }
+       catch (NullPointerException e){
+           e.getMessage();
+           System.out.println("Can't give you the characters of the Author when there is no author :(");
+           return 0;
+       }
     }
 
     public String getTitle(){

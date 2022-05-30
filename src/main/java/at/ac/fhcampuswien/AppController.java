@@ -164,12 +164,14 @@ public class AppController {
                 .collect(Collectors.toList());
     }
 
-    public String getLongestAuthorName(){
-        Article longest = articles.stream().max(Comparator.comparingInt(Article::getAuthorLength))
-                .orElse(null);
-
-        assert longest != null;
-        return longest.getAuthor();
+    public String getLongestAuthorName() {
+        try {
+            return articles.stream().max(Comparator.comparingInt(Article::getAuthorLength))
+                    .orElse(null).getAuthor();
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
+            return "Ain't no author here, user!";
+        }
     }
 
     public int getNewYorkTimesArticleCount(){
