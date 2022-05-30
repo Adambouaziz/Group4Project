@@ -55,9 +55,13 @@ public class Menu {
 
             getNewYorkTimesArticleCount(controller);
 
-        }else if (Objects.equals(input, "ab4") && controller.getArticles() != null){
+        }else if (Objects.equals(input, "ab4") && controller.getArticles() != null) {
 
             getShortHeadlines(controller);
+
+        }else if (Objects.equals(input, "ab5") && controller.getArticles() != null) {
+
+            controller.getDescriptionSorted();
 
         }else{
             printInvalidInputMessage();
@@ -119,6 +123,7 @@ public class Menu {
         System.out.println("  ab2: Get longest author name");
         System.out.println("  ab3: Get NewYorkTimes article count");
         System.out.println("  ab4: Get short articles");
+        System.out.println("  ab5: Get your article descriptions sorted");
         System.out.println("y: Count articles");
         System.out.println("q: Quit program");
     }

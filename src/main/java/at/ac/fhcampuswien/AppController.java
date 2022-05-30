@@ -62,27 +62,6 @@ public class AppController {
         return allNewsBitcoin;
     }
 
-    /*private static List<Article> generateMockList(){
-        Article bitcoinRave = new Article("Steve Smith", "The Bitcoins are raving");
-        Article deadCat = new Article("Liliane Haider", "My poor cat, omg...");
-        Article floridaMan = new Article("Franz Jospeh", "Florida man burned down house with spaghetti sauce");
-        Article transformers = new Article("Shia Lebouf", "Cars are able to speak now...?");
-        Article encanto = new Article("Mirabel Madrigal", "I blew out my family's special candle");
-        Article cyborgs = new Article("Chris Baker", "Why Cyborgs will endanger our species.");
-        Article running = new Article("Ham Middleton", "Is running really healthy?");
-        Article doomsday = new Article("Pam Jackson", "Bitcoin doomsday: Why it will fall to 0.");
-        Article invest = new Article("Wojak Trapper", "What you should invest all your money in RIGHT NOW!!");
-        Article chalamet = new Article("Kitty Kat", "Why is Timothée Chalamet so hot???");
-        Article dogs = new Article ("Heute", "Wir suchen die beliebten Hunderassen");
-        Article kaliumJod = new Article ("Kleine Zeitung", "Wann man KaliumJod einnehmen sollte");
-        Article minister = new Article ("ATV", "Johannes Rauch: Neuer Gesundheitsminister");
-        Article boerse = new Article ("Der Standard", " Börsen im freien Fall");
-        Article hanf = new Article ("Schaufenster", "Ist Hanf das Bessere Holz?");
-
-
-        liste = Arrays.asList(bitcoinRave, deadCat, floridaMan, transformers, encanto, cyborgs, running, doomsday, invest, chalamet, dogs, kaliumJod, minister, boerse, hanf);
-        return liste;
-    }*/
     public String getMostPopuplarSources(){
 
         String mostTimesSource = null;
@@ -118,5 +97,37 @@ public class AppController {
 
         return articles.stream().filter(article -> article.getTitle().length() < 15).collect(Collectors.toList());
     }
+
+    public List<Article> getDescriptionSorted(){
+
+        Comparator<Article> sortByLength = Comparator.comparingInt(Article::getDescriptionLength);
+        Comparator<Article> sortByLetter = Comparator.comparing(Article::getDescription);
+
+        Comparator<Article> sortedByLengthOrLetter = sortByLength.thenComparing(sortByLetter);
+
+        return articles.stream().sorted(sortedByLengthOrLetter).collect(Collectors.toList());
+    }
+
+    /*private static List<Article> generateMockList(){
+        Article bitcoinRave = new Article("Steve Smith", "The Bitcoins are raving");
+        Article deadCat = new Article("Liliane Haider", "My poor cat, omg...");
+        Article floridaMan = new Article("Franz Jospeh", "Florida man burned down house with spaghetti sauce");
+        Article transformers = new Article("Shia Lebouf", "Cars are able to speak now...?");
+        Article encanto = new Article("Mirabel Madrigal", "I blew out my family's special candle");
+        Article cyborgs = new Article("Chris Baker", "Why Cyborgs will endanger our species.");
+        Article running = new Article("Ham Middleton", "Is running really healthy?");
+        Article doomsday = new Article("Pam Jackson", "Bitcoin doomsday: Why it will fall to 0.");
+        Article invest = new Article("Wojak Trapper", "What you should invest all your money in RIGHT NOW!!");
+        Article chalamet = new Article("Kitty Kat", "Why is Timothée Chalamet so hot???");
+        Article dogs = new Article ("Heute", "Wir suchen die beliebten Hunderassen");
+        Article kaliumJod = new Article ("Kleine Zeitung", "Wann man KaliumJod einnehmen sollte");
+        Article minister = new Article ("ATV", "Johannes Rauch: Neuer Gesundheitsminister");
+        Article boerse = new Article ("Der Standard", " Börsen im freien Fall");
+        Article hanf = new Article ("Schaufenster", "Ist Hanf das Bessere Holz?");
+
+
+        liste = Arrays.asList(bitcoinRave, deadCat, floridaMan, transformers, encanto, cyborgs, running, doomsday, invest, chalamet, dogs, kaliumJod, minister, boerse, hanf);
+        return liste;
+    }*/
 
 }
