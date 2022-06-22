@@ -45,7 +45,7 @@ public class Menu {
 
         }else if (Objects.equals(input, "ab1") && controller.getArticles() != null){
 
-            getMostPopularSources(controller);
+            getMostCommonSources(controller);
 
         }else if (Objects.equals(input, "ab2") && controller.getArticles() != null){
 
@@ -82,8 +82,8 @@ public class Menu {
         System.out.println(ctrl.getAllNewsBitcoin());
     }
 
-    private void getMostPopularSources(AppController ctrl){
-        System.out.println(ctrl.getMostPopuplarSources());
+    private void getMostCommonSources(AppController ctrl){
+        System.out.println(ctrl.getMostCommonSources());
     }
 
     private void getLongestAuthorName(AppController ctrl){
