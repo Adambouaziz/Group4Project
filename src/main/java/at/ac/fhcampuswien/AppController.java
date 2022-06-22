@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien;
 
 import Enums.*;
+import at.ac.fhcampuswien.downloader.Downloader;
 
 import java.io.IOException;
 import java.util.*;
@@ -11,7 +12,12 @@ public class AppController {
     private List<Article> articles;
 
     NewsApi newsApi = new NewsApi();
-    /*Menu menu = new Menu();*/
+    Downloader downloader = new Downloader() {
+        @Override
+        public int process(List<String> urls) {
+            return 0;
+        }
+    };
 
     public static List<Article> allNewsBitcoin = new ArrayList<Article>();
 
@@ -27,81 +33,6 @@ public class AppController {
 
     public List<Article> getTopHeadlinesAustria(){
         try {
-            /*System.out.println("Press X to costumize your URL");
-            if (Objects.equals(menu.scan, "X")){
-                System.out.println("Firstly you can choose between the languages german and english." +
-                        "For english press e and for german press g");
-                if (Objects.equals(menu.scan, "e")){
-                    System.out.println("Secondly do you want your category to be business or general?" +
-                            "For general type out gen and for business type bus");
-                    if (Objects.equals(menu.scan, "gen")){
-
-                        System.out.println("Thirdly, by what should your articles be sorted by?" +
-                                "For sorted by relevancy press r, for poularity press p and for when it was published type out pub");
-                        if (Objects.equals(menu.scan, "r")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.ENGLISH, Category.GENERAL,Country.AUSTRIA, SortBy.RELEVANCY, Page.PAGE, PageSize.PAGESIZE));
-                        }else if (Objects.equals(menu.scan, "p")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.ENGLISH, Category.GENERAL,Country.AUSTRIA, SortBy.POPULARITY, Page.PAGE, PageSize.PAGESIZE));
-                        }else if (Objects.equals(menu.scan, "pub")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.ENGLISH, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
-                        }
-
-                    }else if (Objects.equals(menu.scan, "bus")){
-
-                        System.out.println("Thirdly, by what should your articles be sorted by?" +
-                                "For sorted by relevancy press r, for poularity press p and for when it was published type out pub");
-                        if (Objects.equals(menu.scan, "r")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.ENGLISH, Category.BUSINESS,Country.AUSTRIA, SortBy.RELEVANCY, Page.PAGE, PageSize.PAGESIZE));
-                        }else if (Objects.equals(menu.scan, "p")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.ENGLISH, Category.BUSINESS,Country.AUSTRIA, SortBy.POPULARITY, Page.PAGE, PageSize.PAGESIZE));
-                        }else if (Objects.equals(menu.scan, "pub")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.ENGLISH, Category.BUSINESS,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
-                        }
-                    }
-
-                }else if (Objects.equals(menu.scan, "g")){
-
-                    System.out.println("Secondly do you want your category to be business or general?" +
-                            "For general type out gen and for business type bus");
-                    if (Objects.equals(menu.scan, "gen")){
-                        System.out.println("Thirdly, by what should your articles be sorted by?" +
-                                "For sorted by relevancy press r, for poularity press p and for when it was published type out pub");
-                        if (Objects.equals(menu.scan, "r")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.RELEVANCY, Page.PAGE, PageSize.PAGESIZE));
-                        }else if (Objects.equals(menu.scan, "p")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.POPULARITY, Page.PAGE, PageSize.PAGESIZE));
-                        }else if (Objects.equals(menu.scan, "pub")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
-                        }
-
-                    }else if (Objects.equals(menu.scan, "bus")){
-                        System.out.println("Thirdly, by what should your articles be sorted by?" +
-                                "For sorted by relevancy press r, for poularity press p and for when it was published type out pub");
-                        if (Objects.equals(menu.scan, "r")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.BUSINESS,Country.AUSTRIA, SortBy.RELEVANCY, Page.PAGE, PageSize.PAGESIZE));
-                        }else if (Objects.equals(menu.scan, "p")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.BUSINESS,Country.AUSTRIA, SortBy.POPULARITY, Page.PAGE, PageSize.PAGESIZE));
-                        }else if (Objects.equals(menu.scan, "pub")){
-                            System.out.println("Here are your personalized articles:");
-                            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.BUSINESS,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
-                        }
-                    }
-                }
-            }else{
-                articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
-            }*/
-
           articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
 
         } catch (NewsApiException e) {
@@ -155,7 +86,7 @@ public class AppController {
     }
 
 
-    public List<String> getMostPopuplarSources(){
+    public List<String> getMostCommonSources(){
             Comparator<Map.Entry<String, Long>> reversed = Map.Entry.comparingByValue();
             Comparator<Map.Entry<String, Long>> entryComparator = Collections.reverseOrder(reversed);
 
@@ -201,6 +132,16 @@ public class AppController {
         }
 
         return shawtie;
+    }
+
+    // Method is needed for exercise 4 - ignore for exercise 2 solution
+    // returns number of downloaded article urls
+    public int downloadURLs(Downloader downloader) throws NewsApiException {
+        List<String> urls = new ArrayList<>();
+
+        //TODO extract urls from articles with java stream
+
+        return downloader.process(urls);
     }
 
     /*private static List<Article> generateMockList(){

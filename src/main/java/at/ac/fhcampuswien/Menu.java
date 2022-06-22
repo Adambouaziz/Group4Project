@@ -45,7 +45,7 @@ public class Menu {
 
         }else if (Objects.equals(input, "ab1") && controller.getArticles() != null){
 
-            getMostPopularSources(controller);
+            getMostCommonSources(controller);
 
         }else if (Objects.equals(input, "ab2") && controller.getArticles() != null){
 
@@ -82,8 +82,8 @@ public class Menu {
         System.out.println(ctrl.getAllNewsBitcoin());
     }
 
-    private void getMostPopularSources(AppController ctrl){
-        System.out.println(ctrl.getMostPopuplarSources());
+    private void getMostCommonSources(AppController ctrl){
+        System.out.println(ctrl.getMostCommonSources());
     }
 
     private void getLongestAuthorName(AppController ctrl){
@@ -123,7 +123,7 @@ public class Menu {
         System.out.println("Enter what you wanna do:");
         System.out.println("a: Get top headlines Austria");
         System.out.println("b: Get all news about about bitcoin");
-        System.out.println("  ab1: Get most popular sources");
+        System.out.println("  ab1: Get most common sources");
         System.out.println("  ab2: Get longest author name");
         System.out.println("  ab3: Get NewYorkTimes article count");
         System.out.println("  ab4: Get short articles");

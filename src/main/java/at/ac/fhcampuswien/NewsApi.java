@@ -1,8 +1,10 @@
 package at.ac.fhcampuswien;
 
 import Enums.*;
+import at.ac.fhcampuswien.patterns.SingletonClient;
+import at.ac.fhcampuswien.patterns.SingletonGson;
+import at.ac.fhcampuswien.patterns.SingletonRequest;
 import com.google.gson.Gson;
-import okhttp3.Connection;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -12,34 +14,30 @@ import java.util.*;
 
 public class NewsApi {
 
-    private final OkHttpClient client = new OkHttpClient();
-    Gson gson = new Gson();
     String begUrl = "https://newsapi.org";
+
+    OkHttpClient client = SingletonClient.getInstance();
+    Request request = SingletonRequest.getInstance();
+    Gson gson = SingletonGson.getInstance();
 
     private static final String API_KEY = "dece954c62a847f19648591d3110f141";
 
-    private String getRun(String url) throws IOException{
-        Request request = null;
-        try {
-            request = new Request.Builder()
-                    .url(url)
-                    .build();
+    private String getRun(String url) throws IOException, NewsApiException {
 
-            if (!(url.contains("?"))){
-                throw new NewsApiException("URL does not contain -?-.");
-            }else if (!(url.contains(API_KEY))){
-                throw new NewsApiException("URL does not contain API-key");
-            }
-        } catch (NewsApiException e) {
-            System.out.println(e.getMessage());
-            System.exit(0);
+        if (!(url.contains("?"))){
+            throw new NewsApiException("URL does not contain -?-.");
+        }else if (!(url.contains(API_KEY))){
+            throw new NewsApiException("URL does not contain API-key");
         }
 
-            try (Response response = client.newCall(request).execute()) {
+        request = new Request.Builder()
+                .url(url)
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code..." + response);
                 return Objects.requireNonNull(response.body()).string();
             }
-
     }
 
 
@@ -68,28 +66,26 @@ public class NewsApi {
 
 
     public List<Article> parseResponse(String url) throws IOException, NewsApiException {
+
         String gString = getRun(url);
         NewsResponse newsResponse = null;
 
-        try {
-            newsResponse = gson.fromJson(gString, NewsResponse.class);
-            if (newsResponse.getArticles() == null){
-                throw new NewsApiException("Articles is null.");
+        newsResponse = gson.fromJson(gString, NewsResponse.class);
+
+        if (newsResponse.getArticles() == null){
+            throw new NewsApiException("Articles is null.");
+        }else{
+            System.out.println("{" +
+                    "\n" +
+                    "status:" + newsResponse.getStatus() + "\n" +
+                    "totalResults:" + newsResponse.getTotalResult() + "\n" +
+                    "articles:");
+
+            if (newsResponse.getStatus().equals("ok")){
+                return newsResponse.getArticles();
+            }else{
+                throw new NewsApiException((this.getClass() + ": http status not ok. Status is: " + newsResponse.getStatus()));
             }
-        }catch (NewsApiException e){
-            System.out.println(e.getMessage());
-            System.exit(0);
         }
-
-        System.out.println("{" +
-                "\n" +
-                "status:" + newsResponse.getStatus() + "\n" +
-                "totalResults:" + newsResponse.getTotalResult() + "\n" +
-                "articles:");
-
-        return newsResponse.getArticles();
-
-        /*gString = gson.toJson(newsResponse);
-        System.out.println(gString);*/
     }
 }
