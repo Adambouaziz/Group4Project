@@ -5,7 +5,6 @@ import at.ac.fhcampuswien.patterns.SingletonClient;
 import at.ac.fhcampuswien.patterns.SingletonGson;
 import at.ac.fhcampuswien.patterns.SingletonRequest;
 import com.google.gson.Gson;
-import okhttp3.Connection;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -15,7 +14,7 @@ import java.util.*;
 
 public class NewsApi {
 
-    String begUrl = "https://newsapi.org";
+    /**String begUrl = "https://newsapi.org";**/
 
     OkHttpClient client = SingletonClient.getInstance();
     Request request = SingletonRequest.getInstance();
@@ -42,7 +41,7 @@ public class NewsApi {
     }
 
 
-    public String howToUrlTopHeadlines(Endpoint end, Language lang, Category cat, Country cou, SortBy sort, Page page, PageSize size) throws NewsApiException{
+    /**public String howToUrlTopHeadlines(Endpoint end, Language lang, Category cat, Country cou, SortBy sort, Page page, PageSize size) throws NewsApiException{
         return  begUrl +
                 end.endpoint + "?" +
                 "language=" + lang.language +
@@ -62,7 +61,7 @@ public class NewsApi {
                 "&page=" + page.page +
                 "&pageSize=" + size.pageSize +
                 "&apiKey=" + API_KEY;
-    }
+    }**/
 
 
 
@@ -89,4 +88,43 @@ public class NewsApi {
             }
         }
     }
+
+    public static class Builder{
+
+        String begUrl = "https://newsapi.org";
+
+        public String urlBuilder(Endpoint end, Category cat, Country cou, Language lang, Page page, PageSize size, SortBy sort){
+            return begUrl +
+                    end.endpoint + "?" +
+                    "language=" + lang.language +
+                    "&category=" + cat.category +
+                    "&country=" + cou.country +
+                    "&sortBy=" + sort.sortBy +
+                    "&page=" + page.page +
+                    "&pageSize=" + size.pageSize +
+                    "&apiKey=" + API_KEY;
+        }
+
+        public String urlBuilder(Endpoint end, Language lang, Query quer, Page page, PageSize size){
+            return begUrl +
+                    end.endpoint + "?" +
+                    "language=" + lang.language +
+                    "&q=" + quer.query +
+                    "&page=" + page.page +
+                    "&pageSize=" + size.pageSize +
+                    "&apiKey=" + API_KEY;
+        }
+
+        public String urlBuilder(Endpoint end, Category cat, Country cou, Query quer, PageSize size){
+            return begUrl +
+                    end.endpoint + "?" +
+                    "category=" + cat.category +
+                    "&country=" + cou.country +
+                    "&q=" + quer.query +
+                    "&pageSize=" + size.pageSize +
+                    "&apiKey=" + API_KEY;
+
+        }
+    }
+
 }

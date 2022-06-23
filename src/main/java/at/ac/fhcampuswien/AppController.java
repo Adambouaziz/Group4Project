@@ -11,6 +11,7 @@ public class AppController {
     private List<Article> articles;
 
     NewsApi newsApi = new NewsApi();
+    NewsApi.Builder builder = new NewsApi.Builder();
     Downloader downloader = new Downloader() {
         @Override
         public int process(List<String> urls) {
@@ -32,7 +33,7 @@ public class AppController {
 
     public List<Article> getTopHeadlinesAustria(){
         try {
-            articles = newsApi.parseResponse(newsApi.howToUrlTopHeadlines(Endpoint.TOPHEADLINES, Language.GERMAN, Category.GENERAL,Country.AUSTRIA, SortBy.PUBLISHEDAT, Page.PAGE, PageSize.PAGESIZE));
+            articles = newsApi.parseResponse(builder.urlBuilder(Endpoint.TOPHEADLINES,Category.GENERAL, Country.AUSTRIA, Language.GERMAN, Page.PAGE, PageSize.PAGESIZE, SortBy.PUBLISHEDAT));
 
         } catch (NewsApiException e) {
             e.printStackTrace();
@@ -44,7 +45,7 @@ public class AppController {
 
     public List<Article> getAllNewsBitcoin(){
         try {
-            articles = newsApi.parseResponse(newsApi.howToUrlAllNewsBitcoin(Endpoint.EVERYTHING, Language.GERMAN, Query.BITCOIN, Page.PAGE, PageSize.PAGESIZE));
+            articles = newsApi.parseResponse(builder.urlBuilder(Endpoint.EVERYTHING, Language.GERMAN, Query.BITCOIN, Page.PAGE, PageSize.PAGESIZE));
         } catch (NewsApiException e) {
             e.printStackTrace();
         } catch (IOException e) {

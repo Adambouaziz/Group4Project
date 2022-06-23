@@ -14,8 +14,4 @@ public class SingletonGson {
         }
         return instance;
     }
-
-    public NewsResponse fromJson(String gString, Class<NewsResponse> newsResponseClass) {
-        return null;
-    }
 }

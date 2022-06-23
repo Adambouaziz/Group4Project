@@ -17,8 +17,4 @@ public class SingletonClient {
         }
         return instance;
     }
-
-    public Executor newCall(Request request) {
-        return null;
-    }
 }
