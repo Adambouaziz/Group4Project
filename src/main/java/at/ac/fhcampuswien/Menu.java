@@ -3,7 +3,6 @@ package at.ac.fhcampuswien;
 import at.ac.fhcampuswien.download.ParallelDownloader;
 import at.ac.fhcampuswien.download.SequentialDownloader;
 
-import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -148,6 +147,7 @@ public class Menu {
         System.out.println("  ab3: Get NewYorkTimes article count");
         System.out.println("  ab4: Get short articles");
         System.out.println("  ab5: Get your article descriptions sorted");
+        System.out.println("d: Compare url download times");
         System.out.println("y: Count articles");
         System.out.println("q: Quit program");
     }
