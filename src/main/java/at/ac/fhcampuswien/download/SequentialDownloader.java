@@ -1,4 +1,4 @@
-package at.ac.fhcampuswien.downloader;
+package at.ac.fhcampuswien.download;
 import at.ac.fhcampuswien.NewsApiException;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public class SequentialDownloader extends Downloader {
         int count = 0;
         for (String url : urls) {
             try {
-                String fileName = saveUrl2File(url);
+                String fileName = saveUrl2File((url));
                 if(fileName != null)
                     count++;
             } catch (NewsApiException e){

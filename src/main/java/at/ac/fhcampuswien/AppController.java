@@ -1,6 +1,6 @@
 package at.ac.fhcampuswien;
 import Enums.*;
-import at.ac.fhcampuswien.downloader.Downloader;
+import at.ac.fhcampuswien.download.Downloader;
 
 import java.io.IOException;
 import java.util.*;
@@ -8,16 +8,22 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class AppController {
+
+    private static AppController instance = null;
+
+    private  AppController(){}
+
+    public static AppController getInstance(){
+        if (instance == null){
+            instance = new AppController();
+        }
+        return instance;
+    }
+
     private List<Article> articles;
 
     NewsApi newsApi = new NewsApi();
     NewsApi.Builder builder = new NewsApi.Builder();
-    Downloader downloader = new Downloader() {
-        @Override
-        public int process(List<String> urls) {
-            return 0;
-        }
-    };
 
     public static List<Article> allNewsBitcoin = new ArrayList<Article>();
 
@@ -136,8 +142,15 @@ public class AppController {
 
     // Method is needed for exercise 4 - ignore for exercise 2 solution
     // returns number of downloaded article urls
-    public int downloadURLs(Downloader downloader) throws NewsApiException {
-        List<String> urls = new ArrayList<>();
+    public int downloadURLs(Downloader downloader) throws NewsApiException, InterruptedException {
+
+        if(articles == null){throw new NewsApiException("Articles is null.");}
+
+        List<String> urls = articles.stream()
+                .map(Article::getUrl)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
 
         //TODO extract urls from articles with java stream
 

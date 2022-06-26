@@ -1,9 +1,6 @@
 package at.ac.fhcampuswien;
 
 import Enums.*;
-import at.ac.fhcampuswien.patterns.SingletonClient;
-import at.ac.fhcampuswien.patterns.SingletonGson;
-import at.ac.fhcampuswien.patterns.SingletonRequest;
 import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -16,9 +13,8 @@ public class NewsApi {
 
     /**String begUrl = "https://newsapi.org";**/
 
-    OkHttpClient client = SingletonClient.getInstance();
-    Request request = SingletonRequest.getInstance();
-    Gson gson = SingletonGson.getInstance();
+    OkHttpClient client = new OkHttpClient();
+    Gson gson = new Gson();
 
     private static final String API_KEY = "dece954c62a847f19648591d3110f141";
 
@@ -30,7 +26,7 @@ public class NewsApi {
             throw new NewsApiException("URL does not contain API-key");
         }
 
-        request = new Request.Builder()
+        Request request = new Request.Builder()
                 .url(url)
                 .build();
 

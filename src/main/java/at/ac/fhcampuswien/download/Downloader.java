@@ -1,5 +1,6 @@
-package at.ac.fhcampuswien.downloader;
+package at.ac.fhcampuswien.download;
 
+import at.ac.fhcampuswien.Article;
 import at.ac.fhcampuswien.NewsApiException;
 
 import java.io.FileOutputStream;
@@ -14,7 +15,7 @@ public abstract class Downloader {
     public static final String HTML_EXTENSION = ".html";
     public static final String DIRECTORY_DOWNLOAD = "./download/";
 
-    public abstract int process(List<String> urls) throws NewsApiException;
+    public abstract int process(List<String> urls) throws NewsApiException, InterruptedException;
 
     public String saveUrl2File(String urlString) throws NewsApiException {
         InputStream is = null;

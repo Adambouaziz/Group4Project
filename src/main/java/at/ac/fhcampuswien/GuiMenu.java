@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class GuiMenu extends JFrame implements ActionListener{
-    AppController app = new AppController();
+    AppController app = AppController.getInstance();
 
     String[] choices = { "a", "b", "y", "q" };
     JComboBox box = new JComboBox(choices);

@@ -1,19 +1,22 @@
 package at.ac.fhcampuswien;
 
+import at.ac.fhcampuswien.download.ParallelDownloader;
+import at.ac.fhcampuswien.download.SequentialDownloader;
+
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
 
-    AppController controller = new AppController();
+    AppController controller = AppController.getInstance();
 
     private static final String INVALID_INPUT_MESSAGE = "No<3";
     private static final String EXIT_MESSAGE = "See ya later Alligator<3!";
     String scan;
 
 
-    public void start() throws IOException {
+    public void start() throws NewsApiException, InterruptedException {
         for (int i = 1; i > 0; i++){
             printMenu();
             Scanner scanner = new Scanner(System.in);
@@ -24,7 +27,7 @@ public class Menu {
 
     }
 
-    private void handleInput(String input) throws IOException {
+    private void handleInput(String input) throws NewsApiException, InterruptedException {
         scan = input;
         if (Objects.equals(input, "a")){
 
@@ -42,6 +45,10 @@ public class Menu {
 
             printExitMessage();
             System.exit(0);
+
+        }else if (Objects.equals(input, "d")  && controller.getArticles() != null){
+
+            downloadURLs(controller);
 
         }else if (Objects.equals(input, "ab1") && controller.getArticles() != null){
 
@@ -66,6 +73,19 @@ public class Menu {
         }else{
             printInvalidInputMessage();
         }
+    }
+
+    // Method is needed for exercise 4 - ignore for exercise 2 solution
+    private void downloadURLs(AppController ctrl) throws NewsApiException, InterruptedException {
+        int resultSequential = ctrl.downloadURLs(new SequentialDownloader());
+        // TODO print time in ms it took to download URLs sequentially
+        System.out.println(resultSequential);
+
+        // TODO implement the process() function in ParallelDownloader class
+        int resultParallel = ctrl.downloadURLs(new ParallelDownloader());
+        System.out.println(resultParallel);
+
+        // TODO print time in ms it took to download URLs parallel
     }
 
     private void getArticleCount(AppController ctrl){
